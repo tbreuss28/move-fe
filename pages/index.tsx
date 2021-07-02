@@ -1,16 +1,14 @@
-import { Box } from '@chakra-ui/react'
-import Link from 'next/link'
+import Router from 'next/router'
+import { useEffect } from 'react'
 
-import Layout from '../components/layout'
+import SplashScreen from '../components/splash-screen'
 
 export default function Home () {
-  return (
-    <Layout>
-      <Box m='10' border={'4px solid red'} p={4}>
-        <Link href='/moves'>
-          <a>Moves</a>
-        </Link>
-      </Box>
-    </Layout>
-  )
+  useEffect(() => {
+    setTimeout(() => {
+      Router.push('/moves')
+    }, 3000)
+  }, [])
+
+  return <SplashScreen />
 }

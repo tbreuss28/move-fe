@@ -10,13 +10,12 @@ function Container ({ children }: PropsWithChildren<{}>) {
 }
 
 function Main ({ children }: PropsWithChildren<{}>) {
-  return <Box flex='1'>{children}</Box>
+  return <Box display='flex' flex='1'>{children}</Box>
 }
 
 function Layout ({ children }: PropsWithChildren<{}>) {
   return (
     <Container>
-      <div>Header</div>
       <Main>{children}</Main>
     </Container>
   )
