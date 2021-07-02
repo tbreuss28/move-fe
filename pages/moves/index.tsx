@@ -1,16 +1,14 @@
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 
-import Layout from '../../components/layout'
+import Layout, { Header, Main } from '../../components/layout'
 import { Move } from '../../types/Moves'
 
 function MovesPage ({ moves }: { moves: Move[] }) {
   return (
     <Layout>
-      <div>
-        <Link href={`/`}>
-          <a>Back</a>
-        </Link>
+      <Header />
+      <Main>
         <ul>
           {moves.map(move => {
             return (
@@ -24,7 +22,7 @@ function MovesPage ({ moves }: { moves: Move[] }) {
             )
           })}
         </ul>
-      </div>
+      </Main>
     </Layout>
   )
 }
