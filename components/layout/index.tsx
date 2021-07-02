@@ -1,16 +1,16 @@
-import { Box } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { PropsWithChildren } from 'react'
 
 function Container ({ children }: PropsWithChildren<{}>) {
   return (
-    <Box display='flex' flexDirection='column' height='100vh'>
+    <Flex color='light' bg="primary" direction='column' height='100vh'>
       {children}
-    </Box>
+    </Flex>
   )
 }
 
 function Main ({ children }: PropsWithChildren<{}>) {
-  return <Box display='flex' flex='1'>{children}</Box>
+  return <Flex flex='1'>{children}</Flex>
 }
 
 function Layout ({ children }: PropsWithChildren<{}>) {

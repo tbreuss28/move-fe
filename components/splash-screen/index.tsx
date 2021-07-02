@@ -1,13 +1,13 @@
-import { Box } from '@chakra-ui/react'
+import { Center } from '@chakra-ui/react'
 
 import Layout from '../layout'
 
 function SplashScreen () {
   return (
     <Layout>
-      <Box alignItems='center' display='flex' flex='1' justifyContent='center'>
+      <Center flex="1">
         Move Now
-      </Box>
+      </Center>
     </Layout>
   )
 }
