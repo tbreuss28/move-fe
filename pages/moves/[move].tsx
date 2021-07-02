@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { Move } from "../types/Moves";
+import { Move } from "../../types/Moves";
 
 const MovePage = ({ move }: { move: Move }) => {
   return (

@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { Move } from "../types/Moves";
+import { Move } from "../../types/Moves";
 
 const MovesPage = ({ moves }: { moves: Move[] }) => {
   return (
@@ -11,7 +11,7 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
       <ul>
         {moves.map((move) => {
           return (
-            <li>
+            <li key={move.id}>
               <Link href={`/moves/${move.id}`}>
                 <a>
                   {move.id} {move.title}
