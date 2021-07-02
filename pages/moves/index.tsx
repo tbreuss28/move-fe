@@ -9,19 +9,17 @@ function MovesPage ({ moves }: { moves: Move[] }) {
     <Layout>
       <Header />
       <Main>
-        <ul>
           {moves.map(move => {
             return (
-              <li key={move.id}>
+              <div key={move.id}>
                 <Link href={`/moves/${move.id}`}>
                   <a>
                     {move.id} {move.title}
                   </a>
                 </Link>
-              </li>
+              </div>
             )
           })}
-        </ul>
       </Main>
     </Layout>
   )

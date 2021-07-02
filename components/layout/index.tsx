@@ -1,5 +1,5 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
-import { Flex } from '@chakra-ui/react'
+import { Avatar, Flex, Spacer } from '@chakra-ui/react'
 import Link, { LinkProps } from 'next/link'
 import { PropsWithChildren } from 'react'
 interface HeaderProps {
@@ -12,16 +12,22 @@ export function Header ({ backLink }: HeaderProps) {
       {backLink && (
         <Link {...backLink}>
           <a>
-            <ArrowBackIcon />
+            <ArrowBackIcon w={6} h={6} />
           </a>
         </Link>
       )}
+      <Spacer />
+      <Avatar />
     </Flex>
   )
 }
 
 export function Main ({ children }: PropsWithChildren<{}>) {
-  return <Flex flex='1'>{children}</Flex>
+  return (
+    <Flex direction='column' flex='1' p={4}>
+      {children}
+    </Flex>
+  )
 }
 
 function Layout ({ children }: PropsWithChildren<{}>) {
