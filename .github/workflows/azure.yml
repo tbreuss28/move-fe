@@ -18,7 +18,7 @@
 on: push
 
 env:
-  AZURE_WEBAPP_NAME: move-fe    # set this to your application's name
+  AZURE_WEBAPP_NAME: svax2move-fe    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: 'build'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '14.x'                # set this to the node version to use
 
