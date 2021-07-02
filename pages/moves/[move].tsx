@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Layout from '../../components/layout'
 import { Move } from '../../types/Moves'
 
-const MovePage = ({ move }: { move: Move }) => {
+function MovePage ({ move }: { move: Move }) {
   return (
     <Layout>
       <div>
@@ -21,11 +21,10 @@ const MovePage = ({ move }: { move: Move }) => {
 export default MovePage
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const { query } = context
   return {
     props: {
       move: {
-        id: query.move,
+        id: context.query.move,
         title: 'Test Title'
       }
     }

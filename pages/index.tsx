@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 import SplashScreen from '../components/splash-screen'
 
-export default function Home () {
+function Home () {
   useEffect(() => {
     setTimeout(() => {
       Router.push('/moves')
@@ -12,3 +12,5 @@ export default function Home () {
 
   return <SplashScreen />
 }
+
+export default Home
