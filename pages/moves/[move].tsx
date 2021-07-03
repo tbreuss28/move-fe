@@ -27,8 +27,8 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
       <Main>
         <Box color="white">
           <Flex alignItems="center">
-            <SkillLevel maxLevel={5} value={3} />
-            <Text ml={4}>Basketball</Text>
+            <SkillLevel maxLevel={3} value={move.skillId} />
+            <Text ml={4}>{move.categoryName}</Text>
           </Flex>
           <Heading as="h1" my={6}>
             {move.name}
@@ -72,8 +72,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data: move } = await api.get<Move>(`/moves/${context.query.move}`);
   const { data: moveUsers } = await api.get<MoveUser[]>("/moveUsers");
 
-  const movers = moveUsers.filter(({ moveId }) => moveId === move.id);
-
+  // TODO: temporary fixup
+  // const movers = (moveUsers || []).filter(({ moveId }) => moveId === move.id);
+  const movers: MoveUser[] = []
+  
   return {
     props: {
       move,

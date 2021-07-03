@@ -6,4 +6,8 @@ export type Move = {
   endTime: string;
   latitude: number;
   longitude: number;
+  categoryId: number;
+  categoryName: string;
+  skillId: number;
+  skillName: string;
 };
