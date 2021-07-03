@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Header } from "../../components";
 import { Main } from "../../layouts";
-import { Move } from "../../types/Moves";
+import { Move } from "../../types";
 
 const MovesPage = ({ moves }: { moves: Move[] }) => {
   return (
