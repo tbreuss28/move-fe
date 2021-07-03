@@ -18,7 +18,7 @@ const SkillLevel = ({ maxLevel, value }: SkillLevelProps) => {
           borderRadius="50%"
           w={5}
           h={5}
-          mr={idx === maxLevel - 1 ? 0 : 1}
+          mr={idx === maxLevel - 1 ? 0 : 2}
         />
       ))}
     </Flex>
