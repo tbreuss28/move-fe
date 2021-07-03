@@ -14,14 +14,14 @@ export const Context = createContext<Search>({
 export const Consumer = Context.Consumer;
 
 export const Provider = ({ children }: PropsWithChildren<{}>) => {
-  const [searchTerm, setSearchTerm] = useState<string>();
+  const [searchTerm, setSearchTerm] = useState<string | undefined>();
 
   return (
     <Context.Provider
       value={{
         searchTerm,
         setSearchTerm,
-        resetSearchTerm: () => setSearchTerm(""),
+        resetSearchTerm: () => setSearchTerm(undefined),
       }}
     >
       {children}
