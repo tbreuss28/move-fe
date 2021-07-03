@@ -1,30 +1,26 @@
-import { Flex, Input, FormLabel } from "@chakra-ui/react";
-import { FormikContextType, FormikProps } from "formik";
-import { ChangeEvent, ReactNode } from "react";
+import { Flex, FormLabel, Input } from "@chakra-ui/react";
+import { Field } from "formik";
 
 interface FormFieldProps {
   name: string;
   label: string;
-  value: string;
   type?: "password" | "text";
-  onChange: (e: ChangeEvent<any>) => void;
 }
 
-const FormField = ({ name, label, value, type, onChange }: FormFieldProps) => {
+const FormField = ({ name, label, type }: FormFieldProps) => {
   return (
     <Flex direction="column">
       <FormLabel htmlFor={name} fontSize="xs" mb="1">
         {label}
       </FormLabel>
-      <Input
+      <Field
         id={name}
         name={name}
+        as={Input}
         type={type}
         placeholder={label}
-        onChange={onChange}
-        value={value}
         variant="filled"
-      />
+      ></Field>
     </Flex>
   );
 };
