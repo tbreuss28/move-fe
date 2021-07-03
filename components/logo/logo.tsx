@@ -28,7 +28,7 @@ const Logo = ({ size }: LogoProps) => {
             transform="translate(803.5 2415.5)"
             fill="currentColor"
             stroke="currentColor"
-            stroke-width="6"
+            strokeWidth="6"
           />
         </g>
       </svg>
