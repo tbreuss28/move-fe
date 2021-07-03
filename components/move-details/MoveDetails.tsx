@@ -1,13 +1,22 @@
-import { Heading, Text } from "@chakra-ui/react";
+import { Button, Heading, Spacer, Text } from "@chakra-ui/react";
 
 import { Move } from "@types";
 
 const MoveDetails = ({ move }: { move: Move }) => {
   return (
-    <div>
+    <>
       <Heading as="h1">{move.name}</Heading>
       <Text>{move.description}</Text>
-    </div>
+      <Spacer />
+      <Button
+        colorScheme="whiteAlpha"
+        isFullWidth
+        background="brand"
+        color="white"
+      >
+        Teilnehmen
+      </Button>
+    </>
   );
 };
 
