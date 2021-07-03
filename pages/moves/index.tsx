@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GetServerSideProps } from "next";
 import Router from "next/router";
 import { Box } from "@chakra-ui/react";
@@ -7,19 +7,23 @@ import { Header, Footer, Map } from "@components";
 import { api } from "@libs";
 import { Move } from "@types";
 import { AppNavigation } from "@navigations";
-import { Search } from "@providers";
+import { Search, Auth } from "@providers";
+import router from "next/router";
 
 const MovesPage = ({ moves }: { moves: Move[] }) => {
   const { searchTerm } = useContext(Search.Context);
+  const { user } = useContext(Auth.Context);
+
+  useEffect(() => {
+    if (!user) router.push("/login");
+  });
+
   return (
     <>
       <Header color="primary" icon="search" />
       {/* Special Grid Area for Map */}
       <Box gridArea={"header / header / footer / footer"}>
-        <Map
-          containerElement={<div style={{ height: `100%` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        >
+        <Map>
           {moves
             .filter((move) =>
               move.name.toLowerCase().includes(searchTerm?.toLowerCase() ?? "")

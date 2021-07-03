@@ -24,7 +24,8 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
 
   useEffect(() => {
     if (!user) router.push("/login");
-  }, [user]);
+    if (!move) router.push("/movers");
+  });
 
   return (
     <>

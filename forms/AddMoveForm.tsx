@@ -1,8 +1,8 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Flex } from "@chakra-ui/react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
-
-import { Footer } from "@components";
+import { Map, Marker } from "@components";
 
 import FormField from "./components/FormField";
 
@@ -12,6 +12,8 @@ interface AddMoveFormValues {
   media?: Blob;
   category: string[];
   skilllevel: number;
+  latitude?: number;
+  longitude?: number;
 }
 
 const DEFAULT_VALUES: AddMoveFormValues = {
@@ -29,22 +31,41 @@ const AddMoveForm = () => {
     values: AddMoveFormValues,
     { setFieldError }: FormikHelpers<AddMoveFormValues>
   ) => {
-    console.log("I GOT MOVED, BABY!");
+    console.log("Values >>", values);
     router.push("/moves");
   };
 
   return (
     <Formik initialValues={DEFAULT_VALUES} onSubmit={handleSubmit}>
-      {({ errors }) => (
-        <Form id="add-move-form">
-          <Flex direction="column" style={{ gap: "1rem" }}>
-            <FormField name="title" label="Titel" />
-            // TODO: FILE UPLOADER
-            <FormField name="description" label="Beschreibung" />
-            // TODO: SKILLLEVEL
-          </Flex>
-        </Form>
-      )}
+      {({ errors, setFieldValue, values }) => {
+        console.log(values);
+        return (
+          <Form id="add-move-form">
+            <Flex direction="column" style={{ gap: "1rem" }}>
+              <FormField name="title" label="Titel" />
+              // TODO: FILE UPLOADER
+              <Map
+                onClick={(currentPos) => {
+                  const { latitude, longitude } = currentPos;
+                  setFieldValue("latitude", latitude);
+                  setFieldValue("longitude", longitude);
+                }}
+              >
+                {values.latitude && values.longitude && (
+                  <Marker
+                    position={{
+                      lat: values.latitude,
+                      lng: values.longitude,
+                    }}
+                  />
+                )}
+              </Map>
+              <FormField name="description" label="Beschreibung" />
+              // TODO: SKILLLEVEL
+            </Flex>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };
