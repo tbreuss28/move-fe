@@ -1,6 +1,11 @@
-import { useFormik, Form } from "formik";
+import { useFormik } from "formik";
 import { FormLabel, Input, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+
+interface LoginFormValues {
+  username: string;
+  password: string;
+}
 
 const LoginForm = () => {
   const router = useRouter();
@@ -9,27 +14,42 @@ const LoginForm = () => {
       username: "",
       password: "",
     },
-    onSubmit: () => {
+    onSubmit: (values: LoginFormValues) => {
+      console.table(values);
       router.push("/moves");
     },
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
       <FormLabel htmlFor="username">Username</FormLabel>
-      <Input id="username" name="username" placeholder="Username" filled />
+      <Input
+        id="username"
+        name="username"
+        placeholder="Username"
+        onChange={formik.handleChange}
+        value={formik.values.username}
+        filled
+      />
       <FormLabel htmlFor="passwort">Passwort</FormLabel>
       <Input
         id="password"
         name="password"
         type="password"
         placeholder="Passwort"
+        onChange={formik.handleChange}
+        value={formik.values.password}
         filled
       />
-      <Button type="submit" isFullWidth background={"brand"}>
+      <Button
+        type="submit"
+        isFullWidth
+        colorScheme={"yellow"}
+        background="brand"
+      >
         Anmelden
       </Button>
-    </Form>
+    </form>
   );
 };
 
