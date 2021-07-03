@@ -66,17 +66,13 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
   );
 };
 
-export default MovePage;
+export default Auth.withUser(MovePage);
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data: move } = await api.get<Move>(`/moves/${context.query.move}`);
-  const { data: moveUsers } = await api.get<{
-    _embedded: { moveUserList: MoveUser[] };
-  }>("/moveUsers");
+  const { data: moveUsers } = await api.get<MoveUser[]>("/moveUsers");
 
-  const movers = moveUsers._embedded.moveUserList.filter(
-    ({ moveId }) => moveId === move.id
-  );
+  const movers = moveUsers.filter(({ moveId }) => moveId === move.id);
 
   return {
     props: {

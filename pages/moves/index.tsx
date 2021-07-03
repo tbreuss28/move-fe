@@ -5,9 +5,9 @@ import { Box } from "@chakra-ui/react";
 
 import { Header, Footer, Map, Marker } from "@components";
 import { api } from "@libs";
-import { Move } from "@types";
 import { AppNavigation } from "@navigations";
-import { Search } from "@providers";
+import { Auth, Search } from "@providers";
+import { Move } from "@types";
 
 const MovesPage = ({ moves }: { moves: Move[] }) => {
   const { searchTerm } = useContext(Search.Context);
@@ -49,7 +49,7 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
   );
 };
 
-export default MovesPage;
+export default Auth.withUser(MovesPage);
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data } = await api.get<Move[]>("/moves");
