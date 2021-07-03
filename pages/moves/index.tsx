@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 
 import { Header, Map, Marker } from "@components";
 import { Main } from "@layouts";
+import { api } from "@libs";
 import { Move } from "@types";
 
 const MovesPage = ({ moves }: { moves: Move[] }) => {
@@ -25,6 +26,8 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
 export default MovesPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const res = await api.get('/moves')
+  console.log(res)
   return {
     props: {
       moves: [

@@ -16,8 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@components": ["components/index"],
-      "@layouts": ["layouts/index"],
       "@forms": ["forms/index"],
+      "@layouts": ["layouts/index"],
+      "@libs": ["libs/index"],
       "@types": ["types/index"]
     }
   },
