@@ -5,17 +5,16 @@ import { Box } from "@chakra-ui/react";
 import { Marker } from "react-google-maps";
 import { Header, Footer, Map } from "@components";
 import { api } from "@libs";
-import { Move } from "@types";
 import { AppNavigation } from "@navigations";
-import { Search, Auth } from "@providers";
-import router from "next/router";
+import { Auth, Search } from "@providers";
+import { Move } from "@types";
 
 const MovesPage = ({ moves }: { moves: Move[] }) => {
   const { searchTerm } = useContext(Search.Context);
   const { user } = useContext(Auth.Context);
 
   useEffect(() => {
-    if (!user) router.push("/login");
+    if (!user) Router.push("/login");
   });
 
   return (
@@ -47,7 +46,7 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
   );
 };
 
-export default MovesPage;
+export default Auth.withUser(MovesPage);
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data } = await api.get<Move[]>("/moves");
