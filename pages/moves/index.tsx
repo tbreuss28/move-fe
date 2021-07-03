@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 
-import { Header } from "@components";
+import { Header, Map } from "@components";
 import { Main } from "@layouts";
 import { Move } from "@types";
 
@@ -10,6 +10,10 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
     <>
       <Header />
       <Main>
+        <Map
+          containerElement={<div style={{ height: `100%` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
         {moves.map((move) => {
           return (
             <div key={move.id}>
@@ -34,13 +38,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       moves: [
         {
           id: "test1",
-          title: "Test Move 1",
+          title: "Test Move 1"
         },
         {
           id: "test2",
-          title: "Test Move 2",
-        },
-      ],
-    },
+          title: "Test Move 2"
+        }
+      ]
+    }
   };
 };
