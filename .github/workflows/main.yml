@@ -25,8 +25,8 @@ jobs:
         - uses: docker/setup-buildx-action@v1
          
         - run: |
-            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/fe:${{ github.sha }}
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/fe:${{ github.sha }}
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/fe:latest
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/fe:latest
 
         - name: 'Deploy to Azure Container Instances'
           uses: 'azure/aci-deploy@v1'
