@@ -23,7 +23,10 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
       <Header color="primary" icon="search" />
       {/* Special Grid Area for Map */}
       <Box gridArea={"header / header / footer / footer"}>
-        <Map>
+        <Map
+          containerElement={<div style={{ height: `100%` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        >
           {moves
             .filter((move) =>
               move.name.toLowerCase().includes(searchTerm?.toLowerCase() ?? "")

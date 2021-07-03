@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
-import { Map, Marker } from "@components";
+import { Marker } from "react-google-maps";
+import { Map } from "@components";
 
 import FormField from "./components/FormField";
 
@@ -50,6 +51,8 @@ const AddMoveForm = () => {
                   setFieldValue("latitude", latitude);
                   setFieldValue("longitude", longitude);
                 }}
+                containerElement={<div style={{ height: `50vh` }} />}
+                mapElement={<div style={{ height: `100%` }} />}
               >
                 {values.latitude && values.longitude && (
                   <Marker
