@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import Router from "next/router";
 
 import { Header, Map, Marker } from "@components";
 import { Main } from "@layouts";
@@ -15,7 +16,11 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
           mapElement={<div style={{ height: `100%` }} />}
         >
           {moves.map((move) => (
-            <Marker key={move.id} position={move.position} />
+            <Marker
+              key={move.id}
+              position={move.position}
+              onClick={() => Router.push(`/moves/${move.id}`)}
+            />
           ))}
         </Map>
       </Main>
@@ -26,8 +31,8 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
 export default MovesPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await api.get('/moves')
-  console.log(res)
+  const res = await api.get("/moves");
+  console.log(res);
   return {
     props: {
       moves: [
