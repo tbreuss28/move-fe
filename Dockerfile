@@ -1,3 +1,5 @@
+ENV NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyBt76jCSsN2z52-QKicoWFCuRG7UDVSe8U
+
 FROM node:14.16.1 AS development
 
 RUN mkdir /app
