@@ -1,7 +1,8 @@
-import { SearchIcon, CloseIcon } from "@chakra-ui/icons";
+import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import { Flex, IconButton } from "@chakra-ui/react";
-import { Logo } from "@components";
 import { useRouter } from "next/router";
+
+import { Logo } from "@components";
 
 interface HeaderProps {
   close?: boolean;

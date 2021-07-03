@@ -1,9 +1,11 @@
 import { Button, Flex } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 
 import { api } from "@libs";
-import { User } from "@types"
+import { User } from "@types";
+import { Auth } from "@providers";
 
 import FormField from "./components/FormField";
 
@@ -15,25 +17,27 @@ interface LoginFormValues {
 const LoginForm = () => {
   const router = useRouter();
 
-  const handleSubmit = async (values: LoginFormValues) => {
-    const { data: users } = await api.get<User[]>('/users')
+  const { setUser } = useContext(Auth.Context);
 
-    const user = users.find(user => user.userName === values.userName)
+  const handleSubmit = async (values: LoginFormValues) => {
+    const { data: users } = await api.get<User[]>("/users");
+
+    const user = users.find((user) => user.userName === values.userName);
     if (!user) {
-      throw new Error('Benutzername oder Passwort falsch')
+      throw new Error("Benutzername oder Passwort falsch");
     }
 
+    setUser(user);
 
-    console.table(values);
     router.push("/moves");
-  }
+  };
 
   const formik = useFormik({
     initialValues: {
       userName: "",
       password: "",
     },
-    onSubmit: handleSubmit
+    onSubmit: handleSubmit,
   });
 
   return (

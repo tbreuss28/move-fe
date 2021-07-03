@@ -19,6 +19,7 @@
       "@forms": ["forms/index"],
       "@layouts": ["layouts/index"],
       "@libs": ["libs/index"],
+      "@providers": ["providers/index"],
       "@types": ["types/index"]
     }
   },
