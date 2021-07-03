@@ -29,7 +29,7 @@ const Map = withGoogleMap(({ children }) => {
   }, [map.current, position]);
 
   return (
-    <GoogleMap ref={map} defaultZoom={8} defaultCenter={position}>
+    <GoogleMap ref={map} defaultZoom={10} defaultCenter={position}>
       {children}
     </GoogleMap>
   );
