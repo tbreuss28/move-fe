@@ -5,7 +5,7 @@ import { Box } from "@chakra-ui/react";
 import { Header, Footer, Map, Marker } from "@components";
 import { api } from "@libs";
 import { Move } from "@types";
-import AppNavigation from "navigations/app-navigation/AppNavigation";
+import { AppNavigation } from "@navigations";
 
 const MovesPage = ({ moves }: { moves: Move[] }) => {
   return (
