@@ -1,19 +1,19 @@
-import Document, { Head, Html, Main, NextScript } from 'next/document'
+import Document, { Head, Html, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
-  render () {
+  render() {
     return (
       <Html>
         <Head>
-          <link rel='manifest' href='/manifest.json' />
+          <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
           <Main />
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;
