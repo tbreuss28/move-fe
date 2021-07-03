@@ -20,6 +20,7 @@
       "@layouts": ["layouts/index"],
       "@libs": ["libs/index"],
       "@navigations": ["navigations/index"],
+      "@providers": ["providers/index"],
       "@types": ["types/index"]
     }
   },

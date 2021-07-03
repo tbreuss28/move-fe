@@ -19,10 +19,10 @@ const MovePage = ({ move }: { move: Move }) => {
 export default MovePage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { data } = await api.get<Move>(`/moves/${context.query.move}`);
+  const { data: move } = await api.get<Move>(`/moves/${context.query.move}`);
   return {
     props: {
-      move: data,
+      move,
     },
   };
 };
