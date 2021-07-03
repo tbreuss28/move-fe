@@ -14,9 +14,9 @@ jobs:
 
       - id: prep
         run: |
-          DOCKER_IMAGE=betterthings/cube:frontend
+          DOCKER_IMAGE=moveregistry.azurecr.io/fe
           VERSION=${GITHUB_REF#refs/tags/}
-          TAG="${DOCKER_IMAGE}-${VERSION}"
+          TAG="${DOCKER_IMAGE}:latest"
           echo ::set-output name=tags::${TAG}
 
       - uses: docker/setup-qemu-action@v1
