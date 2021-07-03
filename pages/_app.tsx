@@ -2,7 +2,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { AppProps } from "next/app";
 
 import { AppLayout } from "@layouts";
-import { Auth } from "@providers";
+import { Auth, Search } from "@providers";
 
 const colors = {
   brand: "#BDDD0E",
@@ -22,9 +22,11 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <Auth.Provider>
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
+        <Search.Provider>
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
+        </Search.Provider>
       </Auth.Provider>
     </ChakraProvider>
   );

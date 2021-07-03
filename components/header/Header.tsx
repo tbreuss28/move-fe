@@ -1,14 +1,9 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import {
-  Flex,
-  IconButton,
-  Input,
-  Spacer,
-  useOutsideClick,
-} from "@chakra-ui/react";
+import { Flex, IconButton, Input, useOutsideClick } from "@chakra-ui/react";
 import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
 
+import { Search } from "@providers";
 import { Logo } from "@components";
 
 interface HeaderProps {
@@ -18,11 +13,17 @@ interface HeaderProps {
 
 const Header = ({ icon, color = "white" }: HeaderProps) => {
   const router = useRouter();
+  const { setSearchTerm, resetSearchTerm } = useContext(Search.Context);
   const [searchActive, setSearchActive] = useState(false);
   const ref = useRef(null);
 
   useOutsideClick({ ref: ref, handler: () => setSearchActive(false) });
 
+  useEffect(() => {
+    if (searchActive === false) {
+      resetSearchTerm();
+    }
+  }, [searchActive]);
   return (
     <Flex
       as="header"
@@ -48,7 +49,12 @@ const Header = ({ icon, color = "white" }: HeaderProps) => {
         {icon === "search" && (
           <Flex ref={ref}>
             {searchActive && (
-              <Input placeholder="Suche..." variant="outlined" mr={4} />
+              <Input
+                onChange={(e) => setSearchTerm(e.currentTarget.value)}
+                placeholder="Suche..."
+                variant="outlined"
+                mr={4}
+              />
             )}
             <IconButton
               aria-label="Toggle Search"
