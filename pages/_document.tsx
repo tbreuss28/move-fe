@@ -1,9 +1,10 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
+import { ColorModeScript } from "@chakra-ui/react";
 
-const GOOGLE_MAPS_API_KEY = "AIzaSyBt76jCSsN2z52-QKicoWFCuRG7UDVSe8U"
+const GOOGLE_MAPS_API_KEY = "AIzaSyBt76jCSsN2z52-QKicoWFCuRG7UDVSe8U";
 
 class MyDocument extends Document {
-  render () {
+  render() {
     return (
       <Html>
         <Head>
@@ -14,6 +15,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
+          <ColorModeScript />
           <Main />
           <NextScript />
         </body>

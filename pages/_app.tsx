@@ -15,9 +15,10 @@ const colors = {
 
 const theme = extendTheme({
   colors,
+  colorMode: "dark",
 });
 
-function App ({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <Auth.Provider>

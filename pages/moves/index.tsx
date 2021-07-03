@@ -10,7 +10,7 @@ import { AppNavigation } from "@navigations";
 const MovesPage = ({ moves }: { moves: Move[] }) => {
   return (
     <>
-      <Header />
+      <Header color="primary" icon="search" />
       <Box gridArea={"header / header / footer / footer"}>
         <Map
           containerElement={<div style={{ height: `100%` }} />}

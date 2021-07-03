@@ -8,7 +8,7 @@ import { Move } from "@types";
 const MovePage = ({ move }: { move: Move }) => {
   return (
     <>
-      <Header close />
+      <Header icon="close" />
       <Main>
         <MoveDetails move={move} />
       </Main>

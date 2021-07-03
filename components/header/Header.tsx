@@ -1,15 +1,27 @@
-import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
-import { Flex, IconButton } from "@chakra-ui/react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
+import {
+  Flex,
+  IconButton,
+  Input,
+  Spacer,
+  useOutsideClick,
+} from "@chakra-ui/react";
+import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
 
 import { Logo } from "@components";
 
 interface HeaderProps {
-  close?: boolean;
+  icon?: "close" | "search";
+  color?: "white" | "primary";
 }
 
-const Header = ({ close = false }: HeaderProps) => {
+const Header = ({ icon, color = "white" }: HeaderProps) => {
   const router = useRouter();
+  const [searchActive, setSearchActive] = useState(false);
+  const ref = useRef(null);
+
+  useOutsideClick({ ref: ref, handler: () => setSearchActive(false) });
 
   return (
     <Flex
@@ -19,23 +31,34 @@ const Header = ({ close = false }: HeaderProps) => {
       align="center"
       px={8}
       zIndex={1}
-      color={close ? "white" : "primary"}
+      color={color}
     >
       <Logo />
-      {close ? (
-        <IconButton
-          aria-label="Close"
-          onClick={() => router.back()}
-          variant="ghost"
-          _hover={{
-            bg: "primary",
-          }}
-        >
-          <CloseIcon w={6} h={6} />
-        </IconButton>
-      ) : (
-        <SearchIcon w={6} h={6} />
-      )}
+      <>
+        {icon === "close" && (
+          <IconButton
+            aria-label="Close"
+            onClick={() => router.back()}
+            variant="ghost"
+          >
+            <CloseIcon w={6} h={6} />
+          </IconButton>
+        )}
+
+        {icon === "search" && (
+          <Flex ref={ref}>
+            {searchActive && (
+              <Input placeholder="Suche..." variant="outlined" mr={4} />
+            )}
+            <IconButton
+              aria-label="Toggle Search"
+              onClick={() => setSearchActive(!searchActive)}
+            >
+              <SearchIcon w={6} h={6} />
+            </IconButton>
+          </Flex>
+        )}
+      </>
     </Flex>
   );
 };

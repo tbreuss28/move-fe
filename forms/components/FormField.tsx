@@ -10,7 +10,7 @@ interface FormFieldProps {
 const FormField = ({ name, label, type }: FormFieldProps) => {
   return (
     <Flex direction="column">
-      <FormLabel htmlFor={name} fontSize="xs" mb="1">
+      <FormLabel htmlFor={name} fontSize="xs" mb="1" color="white">
         {label}
       </FormLabel>
       <Field
@@ -19,7 +19,7 @@ const FormField = ({ name, label, type }: FormFieldProps) => {
         as={Input}
         type={type}
         placeholder={label}
-        variant="filled"
+        variant="outlined"
       ></Field>
     </Flex>
   );
