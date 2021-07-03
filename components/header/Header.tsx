@@ -11,7 +11,7 @@ const Header = ({ close = false }: HeaderProps) => {
   const router = useRouter();
 
   return (
-    <Flex justifyContent="space-between" align="center" height={28} px={8}>
+    <Flex justifyContent="space-between" align="center" px={8}>
       <Logo />
       {close ? (
         <IconButton

@@ -17,7 +17,7 @@ const Map = withGoogleMap(({ children }) => {
     }
     return {
       lat: latitude,
-      lng: longitude
+      lng: longitude,
     };
   }, [latitude, longitude]);
 
