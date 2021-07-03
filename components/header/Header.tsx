@@ -11,13 +11,24 @@ const Header = ({ close = false }: HeaderProps) => {
   const router = useRouter();
 
   return (
-    <Flex justifyContent="space-between" align="center" px={8}>
+    <Flex
+      as="header"
+      gridArea="header"
+      justifyContent="space-between"
+      align="center"
+      px={8}
+      zIndex={1}
+      color={close ? "white" : "primary"}
+    >
       <Logo />
       {close ? (
         <IconButton
           aria-label="Close"
           onClick={() => router.back()}
           variant="ghost"
+          _hover={{
+            bg: "primary",
+          }}
         >
           <CloseIcon w={6} h={6} />
         </IconButton>

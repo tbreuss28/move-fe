@@ -8,7 +8,7 @@ import { Move } from "@types";
 const MovePage = ({ move }: { move: Move }) => {
   return (
     <>
-      <Header backLink={{ href: "/moves " }} />
+      <Header close />
       <Main>
         <MoveDetails move={move} />
       </Main>
@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data } = await api.get<Move>(`/moves/${context.query.move}`);
   return {
     props: {
-      move: data
-    }
+      move: data,
+    },
   };
 };

@@ -2,15 +2,16 @@ import { GetServerSideProps } from "next";
 import Router from "next/router";
 import { Box } from "@chakra-ui/react";
 
-import { Header, Map, Marker } from "@components";
+import { Header, Footer, Map, Marker } from "@components";
 import { api } from "@libs";
 import { Move } from "@types";
+import AppNavigation from "navigations/app-navigation/AppNavigation";
 
 const MovesPage = ({ moves }: { moves: Move[] }) => {
   return (
     <>
       <Header />
-      <Box gridArea={"main"}>
+      <Box gridArea={"header / header / footer / footer"}>
         <Map
           containerElement={<div style={{ height: `100%` }} />}
           mapElement={<div style={{ height: `100%` }} />}
@@ -24,6 +25,9 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
           ))}
         </Map>
       </Box>
+      <Footer>
+        <AppNavigation />
+      </Footer>
     </>
   );
 };
