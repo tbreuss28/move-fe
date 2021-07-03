@@ -6,10 +6,11 @@ interface FormFieldProps {
   name: string;
   label: string;
   value: string;
+  type?: "password" | "text";
   onChange: (e: ChangeEvent<any>) => void;
 }
 
-const FormField = ({ name, label, value, onChange }: FormFieldProps) => {
+const FormField = ({ name, label, value, type, onChange }: FormFieldProps) => {
   return (
     <Flex direction="column">
       <FormLabel htmlFor={name} fontSize="xs" mb="1">
@@ -18,7 +19,7 @@ const FormField = ({ name, label, value, onChange }: FormFieldProps) => {
       <Input
         id={name}
         name={name}
-        type="password"
+        type={type}
         placeholder={label}
         onChange={onChange}
         value={value}

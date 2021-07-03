@@ -33,6 +33,7 @@ const LoginForm = () => {
         <FormField
           name="password"
           label="Passwort"
+          type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
         />
@@ -43,6 +44,7 @@ const LoginForm = () => {
           background="brand"
           color="white"
           mt={8}
+          gridArea="footer"
         >
           Anmelden
         </Button>

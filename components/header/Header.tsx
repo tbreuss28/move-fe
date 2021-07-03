@@ -1,23 +1,29 @@
-import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Avatar, Flex, Spacer } from "@chakra-ui/react";
-import Link, { LinkProps } from "next/link";
+import { SearchIcon, CloseIcon } from "@chakra-ui/icons";
+import { Flex, IconButton } from "@chakra-ui/react";
+import { Logo } from "@components";
+import { useRouter } from "next/router";
 
 interface HeaderProps {
-  backLink?: LinkProps;
+  close?: boolean;
 }
 
-const Header = ({ backLink }: HeaderProps) => {
+const Header = ({ close = false }: HeaderProps) => {
+  const router = useRouter();
+
   return (
-    <Flex align="center" bg="secondary" height={16} pl={4} pr={4}>
-      {backLink && (
-        <Link {...backLink}>
-          <a>
-            <ArrowBackIcon w={6} h={6} />
-          </a>
-        </Link>
+    <Flex justifyContent="space-between" align="center" height={28} px={8}>
+      <Logo />
+      {close ? (
+        <IconButton
+          aria-label="Close"
+          onClick={() => router.back()}
+          variant="ghost"
+        >
+          <CloseIcon w={6} h={6} />
+        </IconButton>
+      ) : (
+        <SearchIcon w={6} h={6} />
       )}
-      <Spacer />
-      <Avatar />
     </Flex>
   );
 };
