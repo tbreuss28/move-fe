@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
 
-import { Header } from "../../components";
-import { Main } from "../../layouts";
-import type { Move } from "../../types";
+import { Header } from "@components";
+import { Main } from "@layouts";
+import type { Move } from "@types";
 
 const MovePage = ({ move }: { move: Move }) => {
   return (

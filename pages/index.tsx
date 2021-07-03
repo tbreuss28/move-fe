@@ -1,7 +1,7 @@
 import Router from "next/router";
 import { useEffect } from "react";
 
-import SplashScreen from "../components/splash-screen/SplashScreen";
+import { SplashScreen } from "@components";
 
 const Home = () => {
   useEffect(() => {

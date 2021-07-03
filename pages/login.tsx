@@ -1,6 +1,6 @@
-import { Main } from "../layouts";
-import { Header } from "../components";
-import { LoginForm } from "../forms";
+import { Main } from "@layouts";
+import { Header } from "@components";
+import { LoginForm } from "@forms";
 
 const LoginPage = () => {
   return (
