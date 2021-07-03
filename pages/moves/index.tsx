@@ -18,7 +18,7 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
           {moves.map((move) => (
             <Marker
               key={move.id}
-              position={move.position}
+              position={{ lat: move.latitude, lng: move.longitude }}
               onClick={() => Router.push(`/moves/${move.id}`)}
             />
           ))}
@@ -31,22 +31,10 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
 export default MovesPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await api.get("/moves");
-  console.log(res);
+  const { data } = await api.get<{ _embedded: { moveList: Move[] } }>("/moves");
   return {
     props: {
-      moves: [
-        {
-          id: "test1",
-          title: "Test Move 1",
-          position: { lat: -34.397, lng: 150.644 }
-        },
-        {
-          id: "test2",
-          title: "Test Move 2",
-          position: { lat: -34.912, lng: 151.12 }
-        }
-      ]
+      moves: data._embedded.moveList
     }
   };
 };
