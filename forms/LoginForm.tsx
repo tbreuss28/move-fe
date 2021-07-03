@@ -31,7 +31,9 @@ const LoginForm = () => {
   ) => {
     const { data: users } = await api.get<User[]>("/users");
 
-    const user = users.find((user) => user.userName === values.userName);
+    const user = users.find(
+      (user) => user.userName === values.userName.trim().toLowerCase()
+    );
     if (!user) {
       setFieldError("submit", "Benutzername oder Passwort falsch");
       return;
