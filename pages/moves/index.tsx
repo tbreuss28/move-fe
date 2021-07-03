@@ -1,12 +1,13 @@
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 
-import Layout, { Header, Main } from "../../components/layout";
+import { Header } from "../../components";
+import { Main } from "../../layouts";
 import { Move } from "../../types/Moves";
 
-function MovesPage({ moves }: { moves: Move[] }) {
+const MovesPage = ({ moves }: { moves: Move[] }) => {
   return (
-    <Layout>
+    <>
       <Header />
       <Main>
         {moves.map((move) => {
@@ -21,9 +22,9 @@ function MovesPage({ moves }: { moves: Move[] }) {
           );
         })}
       </Main>
-    </Layout>
+    </>
   );
-}
+};
 
 export default MovesPage;
 

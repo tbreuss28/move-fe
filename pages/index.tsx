@@ -1,16 +1,16 @@
 import Router from "next/router";
 import { useEffect } from "react";
 
-import SplashScreen from "../components/splash-screen";
+import SplashScreen from "../components/splash-screen/SplashScreen";
 
-function Home() {
+const Home = () => {
   useEffect(() => {
     setTimeout(() => {
-      Router.push("/moves");
+      Router.push("/login");
     }, 3000);
   }, []);
 
   return <SplashScreen />;
-}
+};
 
 export default Home;
