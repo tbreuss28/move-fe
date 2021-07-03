@@ -1,16 +1,16 @@
 import { GetServerSideProps } from "next";
 
-import { Header } from "@components";
+import { Header, MoveDetails } from "@components";
 import { Main } from "@layouts";
 import { api } from "@libs";
-import type { Move } from "@types";
+import { Move } from "@types";
 
 const MovePage = ({ move }: { move: Move }) => {
   return (
     <>
       <Header backLink={{ href: "/moves " }} />
       <Main>
-        {move.id} / {move.title}
+        <MoveDetails move={move} />
       </Main>
     </>
   );
@@ -19,14 +19,15 @@ const MovePage = ({ move }: { move: Move }) => {
 export default MovePage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await api.get(`/moves/${context.query.move}`)
-  console.log(res)
+  const res = await api.get(`/moves/${context.query.move}`);
+  console.log(res);
   return {
     props: {
       move: {
         id: context.query.move,
-        title: "Test Title",
-      },
-    },
+        name: "Test Title",
+        description: "Test Description"
+      }
+    }
   };
 };
