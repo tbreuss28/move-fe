@@ -1,13 +1,14 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { format, parseISO } from "date-fns";
 import { GetServerSideProps } from "next";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { Footer, Header, SkillLevel } from "@components";
 import { Main } from "@layouts";
 import { api } from "@libs";
 import { Auth } from "@providers";
 import { Move, MoveUser } from "@types";
+import router from "next/router";
 
 const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
   const { user } = useContext(Auth.Context);
@@ -16,10 +17,14 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
 
   const handleJoin = async () => {
     if (!user) {
-      throw new Error("Missing user context!");
+      router.push("/login");
     }
-    await api.post("/moveUsers", { userId: user.id, moveId: move.id });
+    await api.post("/moveUsers", { userId: user?.id, moveId: move.id });
   };
+
+  useEffect(() => {
+    if (!user) router.push("/login");
+  }, [user]);
 
   return (
     <>
