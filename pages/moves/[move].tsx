@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { format, parseISO } from "date-fns";
 import { GetServerSideProps } from "next";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { Footer, Header, SkillLevel } from "@components";
 import { Main } from "@layouts";
@@ -19,6 +19,13 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
       throw new Error("Missing user context!");
     }
     await api.post("/moveUsers", { userId: user.id, moveId: move.id });
+  };
+
+  const handleLeave = async () => {
+    if (!user) {
+      throw new Error("Missing user context!");
+    }
+    await api.delete(`/moveUsers/${hasJoined?.id}`);
   };
 
   return (
@@ -39,8 +46,16 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
         </Box>
       </Main>
       <Footer>
-        {!hasJoined && (
-          <Button
+        {hasJoined ? (
+        <Button
+            onClick={handleLeave}
+            colorScheme="red"
+            isFullWidth
+          >
+            Verlassen
+          </Button>)
+          :
+          (<Button
             onClick={handleJoin}
             colorScheme="whiteAlpha"
             isFullWidth
@@ -48,19 +63,9 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
             color="white"
           >
             Teilnehmen
-          </Button>
-        )}
-        {hasJoined && (
-          <Button
-            colorScheme="whiteAlpha"
-            isFullWidth
-            background="primary"
-            color="white"
-            disabled
-          >
-            Verlassen
-          </Button>
-        )}
+          </Button>)
+        }
+        
       </Footer>
     </>
   );
@@ -70,7 +75,7 @@ export default Auth.withUser(MovePage);
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data: move } = await api.get<Move>(`/moves/${context.query.move}`);
-  const { data: moveUsers } = await api.get<MoveUser[]>("/moveUsers");
+  const { data: moveUsers } = await api.get<MoveUser[]>(`/moves/${context.query.move}/moveUsers/`);
 
   // TODO: temporary fixup
   // const movers = (moveUsers || []).filter(({ moveId }) => moveId === move.id);
@@ -79,7 +84,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       move,
-      movers,
+      movers: moveUsers,
     },
   };
 };
