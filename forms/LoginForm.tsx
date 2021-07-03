@@ -47,22 +47,11 @@ const LoginForm = () => {
   return (
     <Formik initialValues={DEFAULT_VALUES} onSubmit={handleSubmit}>
       {({ errors }) => (
-        <Form>
+        <Form id="login-form">
           <Flex direction="column" style={{ gap: "1rem" }}>
             <FormField name="userName" label="Benutzername" />
             <FormField name="password" label="Passwort" type="password" />
             {errors?.submit && <div>{errors.submit}</div>}
-            <Button
-              type="submit"
-              colorScheme="whiteAlpha"
-              isFullWidth
-              background="brand"
-              color="white"
-              mt={8}
-              gridArea="footer"
-            >
-              Anmelden
-            </Button>
           </Flex>
         </Form>
       )}

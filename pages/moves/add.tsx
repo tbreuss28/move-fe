@@ -1,15 +1,15 @@
 import { Button } from "@chakra-ui/react";
 
-import { Main } from "@layouts";
-import { Header, Footer } from "@components";
-import { LoginForm } from "@forms";
+import { AppLayout, Main } from "@layouts";
+import { Footer, Header } from "@components";
+import { AddMoveForm } from "@forms";
 
-const LoginPage = () => {
+const AddMovePage = () => {
   return (
-    <>
-      <Header />
+    <AppLayout>
+      <Header icon="close" />
       <Main>
-        <LoginForm />
+        <AddMoveForm />
       </Main>
       <Footer>
         <Button
@@ -19,13 +19,13 @@ const LoginPage = () => {
           background="brand"
           color="white"
           gridArea="footer"
-          form="login-form"
+          form="add-move-form"
         >
-          Anmelden
+          Move erstellen
         </Button>
       </Footer>
-    </>
+    </AppLayout>
   );
 };
 
-export default LoginPage;
+export default AddMovePage;
