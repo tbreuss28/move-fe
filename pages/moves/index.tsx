@@ -28,7 +28,9 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
         >
           {moves
             .filter((move) =>
-              move.name.toLowerCase().includes(searchTerm?.toLowerCase() ?? "")
+              `${move.name.toLowerCase()} ${move.categoryName}`.includes(
+                searchTerm?.toLowerCase() ?? ""
+              )
             )
             .map((move) => (
               <Marker
