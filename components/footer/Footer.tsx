@@ -10,7 +10,10 @@ const Footer = ({ children }: FooterProps) => {
   return (
     <Flex
       as="footer"
-      gridArea="footer"
+      position="fixed"
+      top={"80%"}
+      left={"50%"}
+      transform="translateX(-50%)"
       justifyContent="center"
       alignItems="center"
       p={8}

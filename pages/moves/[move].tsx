@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text, Spacer } from "@chakra-ui/react";
 import { format, parseISO } from "date-fns";
 import { GetServerSideProps } from "next";
 import { useContext, useEffect } from "react";
@@ -34,6 +34,10 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
     await api.delete(`/moveUsers/${hasJoined?.id}`);
   };
 
+  const formatDate = (date: string): string => {
+    return format(parseISO(date), "dd.MM.yyyy, hh:mm");
+  };
+
   return (
     <>
       <Header icon="close" />
@@ -46,9 +50,17 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
           <Heading as="h1" my={6}>
             {move.name}
           </Heading>
-          <Text>{move.description}</Text>
-          <Text>Von: {format(parseISO(move.startTime), "Pp")}</Text>
-          <Text>Bis: {format(parseISO(move.endTime), "Pp")}</Text>
+          <Flex alignItems="flex-start" justiyContent="space-between" my={12}>
+            <Flex direction="column" flexBasis="50%">
+              <Text fontSize="sm">Von</Text>
+              <Text fontSize="2xl">{formatDate(move.startTime)}</Text>
+            </Flex>
+            <Flex direction="column" flexBasis="50%">
+              <Text fontSize="sm">Bis</Text>
+              <Text fontSize="2xl">{formatDate(move.endTime)}</Text>
+            </Flex>
+          </Flex>
+          <Text fontSize="large">{move.description}</Text>
         </Box>
       </Main>
       <Footer>

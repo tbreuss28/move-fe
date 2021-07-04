@@ -72,7 +72,7 @@ const AddMoveForm = () => {
                   Skilllevel
                 </FormLabel>
                 <SkillLevel
-                  maxLevel={5}
+                  maxLevel={3}
                   value={values.skilllevel}
                   onChange={(value) => setFieldValue("skilllevel", value)}
                 />

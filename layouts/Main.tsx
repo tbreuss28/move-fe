@@ -8,6 +8,7 @@ const Main = ({ children }: FlexProps) => {
       direction="column"
       flex="1"
       p={8}
+      pb={24}
       overflowY="scroll"
     >
       {children}
