@@ -38,7 +38,7 @@ const Map = withGoogleMap(
         return;
       }
       map.current.panTo(position);
-    }, [map.current, position]);
+    }, [map, position]);
 
     return (
       <GoogleMap

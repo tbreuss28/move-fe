@@ -23,7 +23,7 @@ const Header = ({ icon, color = "white" }: HeaderProps) => {
     if (searchActive === false) {
       resetSearchTerm();
     }
-  }, [searchActive]);
+  }, [searchActive, resetSearchTerm]);
   return (
     <Flex
       as="header"

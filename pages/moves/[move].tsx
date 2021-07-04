@@ -64,7 +64,7 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
           <Text fontSize="large">{move.description}</Text>
           <Flex>
             {movers.map((mover) => {
-              return <Text>{mover.userId}</Text>;
+              return <Text key={mover.userId}>{mover.userId}</Text>;
             })}
           </Flex>
         </Box>
