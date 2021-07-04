@@ -35,7 +35,7 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
   };
 
   const formatDate = (date: string): string => {
-    return format(parseISO(date), "dd.MM.yyyy, hh:mm");
+    return date ? format(parseISO(date), "dd.MM.yyyy, hh:mm") : "Kein Datum";
   };
 
   return (
@@ -50,6 +50,7 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
           <Heading as="h1" my={6}>
             {move.name}
           </Heading>
+
           <Flex alignItems="flex-start" justiyContent="space-between" my={12}>
             <Flex direction="column" flexBasis="50%">
               <Text fontSize="sm">Von</Text>
@@ -61,6 +62,11 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
             </Flex>
           </Flex>
           <Text fontSize="large">{move.description}</Text>
+          <Flex>
+            {movers.map((mover) => {
+              return <Text>{mover.userId}</Text>;
+            })}
+          </Flex>
         </Box>
       </Main>
       <Footer>

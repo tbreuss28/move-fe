@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Flex, FormLabel } from "@chakra-ui/react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
 import { Marker } from "react-google-maps";
 import { Map, SkillLevel } from "@components";
+import { api } from "@libs";
+import { Auth } from "@providers";
 
 import FormField from "./components/FormField";
 
 interface AddMoveFormValues {
-  title: string;
+  name: string;
   description: string;
   media?: Blob;
   category: string[];
@@ -18,7 +20,7 @@ interface AddMoveFormValues {
 }
 
 const DEFAULT_VALUES: AddMoveFormValues = {
-  title: "",
+  name: "",
   description: "",
   media: undefined,
   category: [""],
@@ -27,13 +29,24 @@ const DEFAULT_VALUES: AddMoveFormValues = {
 
 const AddMoveForm = () => {
   const router = useRouter();
+  const { user } = useContext(Auth.Context);
 
   const handleSubmit = async (
     values: AddMoveFormValues,
     { setFieldError }: FormikHelpers<AddMoveFormValues>
   ) => {
-    console.log("Values >>", values);
-    router.push("/moves");
+    const payload = {
+      name: values.name,
+      description: values.description,
+      latitude: values.latitude,
+      longitude: values.longitude,
+      skillId: values.skilllevel,
+      creatorId: user?.id,
+    };
+    api
+      .post("/moves", payload)
+      .then(() => router.push("/moves"))
+      .catch((err) => console.error(err.message));
   };
 
   return (
@@ -42,7 +55,7 @@ const AddMoveForm = () => {
         return (
           <Form id="add-move-form">
             <Flex direction="column" style={{ gap: "1rem" }}>
-              <FormField name="title" label="Titel" />
+              <FormField name="name" label="Titel" />
               <Flex direction="column">
                 <FormLabel fontSize="xs" mb="1" color="white">
                   Location
