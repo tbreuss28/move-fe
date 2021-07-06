@@ -8,6 +8,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>Move Now</title>
           <link rel="manifest" href="/manifest.json" />
           <script
             async
