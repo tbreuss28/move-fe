@@ -1,7 +1,8 @@
-import { ReactNode, useEffect, useMemo, useRef } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import {
   GoogleMap,
   Marker,
+  Circle,
   withGoogleMap,
   WithGoogleMapProps,
 } from "react-google-maps";
@@ -10,41 +11,62 @@ import MapStyles from "./styles";
 
 export { Marker };
 
-const DEFAULT_POSITION = { lat: 47.2186011, lng: 9.60297 };
+type GeoLocation = {
+  lat: number;
+  lng: number;
+};
+
+type PositionRadius = {
+  radius: number;
+  color: string;
+};
 
 interface MapProps {
   children: ReactNode;
-  onClick?: (currentPosition: { latitude: number; longitude: number }) => void;
+  onClick?: (currentPosition: GeoLocation) => void;
+  activePosition?: GeoLocation;
 }
 
+const DEFAULT_POSITION = { lat: 47.2186011, lng: 9.60297 };
+
+const CIRCLES: PositionRadius[] = [
+  { radius: 1000, color: "rgba(255, 255, 255, 0.3)" },
+  { radius: 3000, color: "rgba(255, 255, 255,  0.3)" },
+  { radius: 5000, color: "rgba(255, 255, 255, 0.3)" },
+  { radius: 10000, color: "rgba(75, 85, 5, 0.3)" },
+];
+
 const Map = withGoogleMap(
-  ({ children, onClick }: MapProps & WithGoogleMapProps) => {
+  ({ children, onClick, activePosition }: MapProps & WithGoogleMapProps) => {
     const map = useRef<GoogleMap>(null);
+    const [userPosition, setUserPosition] =
+      useState<GeoLocation>(DEFAULT_POSITION);
+    const [activeMarkerPosition, setActiveMarkerPosition] = useState<
+      GeoLocation | undefined
+    >();
 
-    const { latitude, longitude } = useGeolocation();
+    const { latitude: geoLocationLat, longitude: geoLocationLng } =
+      useGeolocation();
 
-    const position = useMemo(() => {
-      if (latitude == null || longitude == null) {
-        return DEFAULT_POSITION;
-      }
-      return {
-        lat: latitude,
-        lng: longitude,
-      };
-    }, [latitude, longitude]);
+    const geoLocationEnabled = geoLocationLat && geoLocationLng;
 
     useEffect(() => {
-      if (!map.current || !position) {
+      if (geoLocationLat && geoLocationLng)
+        setUserPosition({ lat: geoLocationLat, lng: geoLocationLng });
+    }, [geoLocationLat, geoLocationLng]);
+
+    useEffect(() => {
+      if (!map.current || !userPosition || !activeMarkerPosition) {
         return;
       }
-      map.current.panTo(position);
-    }, [map, position]);
+      map.current.panTo(activeMarkerPosition || userPosition);
+    }, [map, userPosition, activeMarkerPosition]);
 
     return (
       <GoogleMap
         ref={map}
-        defaultZoom={10}
-        defaultCenter={position}
+        defaultZoom={activePosition ? 15 : 11}
+        defaultCenter={activePosition || userPosition}
         defaultOptions={{
           disableDefaultUI: true,
           styles: MapStyles,
@@ -53,14 +75,34 @@ const Map = withGoogleMap(
         }}
         onClick={(pos) => {
           const { latLng } = pos;
+          const geoPosition = { lat: latLng.lat(), lng: latLng.lng() };
+          setActiveMarkerPosition(geoPosition);
 
-          onClick &&
-            onClick({
-              latitude: latLng.lat(),
-              longitude: latLng.lng(),
-            });
+          onClick && onClick(geoPosition);
         }}
       >
+        {geoLocationEnabled &&
+          CIRCLES &&
+          CIRCLES.map((circle, i) => {
+            const level = i + 1;
+
+            return (
+              <Circle
+                key={i}
+                center={userPosition}
+                defaultVisible={true}
+                defaultRadius={circle.radius}
+                options={{
+                  fillColor: circle.color,
+                  strokeWidth: 0,
+                  strokeColor: "transparent",
+                  zIndex: level,
+                  clickable: false,
+                }}
+              />
+            );
+          })}
+
         {children}
       </GoogleMap>
     );

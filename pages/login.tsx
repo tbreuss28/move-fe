@@ -1,13 +1,22 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 
 import { Main } from "@layouts";
-import { Header, Footer } from "@components";
+import { Logo, Footer } from "@components";
 import { LoginForm } from "@forms";
 
 const LoginPage = () => {
   return (
     <>
-      <Header />
+      <Flex
+        gridArea="main"
+        alignItems="flex-start"
+        justifyContent="center"
+        height="100%"
+        width="100%"
+        color="white"
+      >
+        <Logo size="xlarge" />
+      </Flex>
       <Main>
         <LoginForm />
       </Main>

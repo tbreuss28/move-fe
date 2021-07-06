@@ -1,5 +1,5 @@
 interface LogoProps {
-  size?: "small" | "medium" | "large";
+  size?: "small" | "medium" | "large" | "xlarge";
 }
 
 const Logo = ({ size }: LogoProps) => {
@@ -9,6 +9,8 @@ const Logo = ({ size }: LogoProps) => {
         return 16;
       case "large":
         return 64;
+      case "xlarge":
+        return 128;
       default:
         return 32;
     }

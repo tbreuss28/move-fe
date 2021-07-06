@@ -1,4 +1,4 @@
-import { Flex, FormLabel, Input, Textarea } from "@chakra-ui/react";
+import { Flex, FormLabel, Input, Textarea, Text } from "@chakra-ui/react";
 import { Field } from "formik";
 
 interface FormFieldProps {
@@ -6,6 +6,8 @@ interface FormFieldProps {
   label: string;
   type?: "password" | "text";
   multiLine?: boolean;
+  readonly?: boolean;
+  value?: string;
 }
 
 const FormField = ({
@@ -13,20 +15,26 @@ const FormField = ({
   label,
   type = "text",
   multiLine = false,
+  readonly,
+  value,
 }: FormFieldProps) => {
   return (
     <Flex direction="column">
-      <FormLabel htmlFor={name} fontSize="xs" mb="1" color="white">
+      <FormLabel htmlFor={name} fontSize="xs" mb="2" color="white">
         {label}
       </FormLabel>
-      <Field
-        id={name}
-        name={name}
-        as={multiLine ? Textarea : Input}
-        type={type}
-        placeholder={label}
-        variant="outlined"
-      />
+      {readonly ? (
+        <Text color="white">{value}</Text>
+      ) : (
+        <Field
+          id={name}
+          name={name}
+          as={multiLine ? Textarea : Input}
+          type={type}
+          placeholder={label}
+          variant="outlined"
+        />
+      )}
     </Flex>
   );
 };

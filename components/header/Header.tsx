@@ -32,7 +32,7 @@ const Header = ({ icon, color = "white" }: HeaderProps) => {
       align="center"
       px={8}
       zIndex={1}
-      color={color}
+      color={color === "primary" ? "primary.300" : color}
     >
       <Logo />
       <>
@@ -41,6 +41,7 @@ const Header = ({ icon, color = "white" }: HeaderProps) => {
             aria-label="Close"
             onClick={() => router.back()}
             variant="ghost"
+            colorScheme="white"
           >
             <CloseIcon w={6} h={6} />
           </IconButton>
@@ -53,12 +54,15 @@ const Header = ({ icon, color = "white" }: HeaderProps) => {
                 onChange={(e) => setSearchTerm(e.currentTarget.value)}
                 placeholder="Suche..."
                 variant="outlined"
+                colorScheme="secondary"
                 mr={4}
               />
             )}
             <IconButton
               aria-label="Toggle Search"
               onClick={() => setSearchActive(!searchActive)}
+              colorScheme="secondary"
+              borderRadius="xl"
             >
               <SearchIcon w={6} h={6} />
             </IconButton>

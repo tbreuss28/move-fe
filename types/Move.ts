@@ -10,4 +10,8 @@ export type Move = {
   categoryName: string;
   skillId: number;
   skillName: string;
+  creatorId: number;
+  mediaId: number;
+  pictureUrl: string;
+  videoUrl: string;
 };

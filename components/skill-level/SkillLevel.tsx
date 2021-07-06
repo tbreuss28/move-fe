@@ -16,7 +16,7 @@ const SkillLevel = ({ maxLevel, value = 0, onChange }: SkillLevelProps) => {
           <Box
             key={level}
             colorScheme="white"
-            bg={(level > value && "transparent") || undefined}
+            bg={(level > value && "transparent") || "white"}
             border="2px solid"
             borderColor="white"
             borderRadius="50%"

@@ -27,11 +27,15 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
           mapElement={<div style={{ height: `100%` }} />}
         >
           {moves
-            .filter((move) =>
-              `${move.name.toLowerCase()} ${move.categoryName}`.includes(
-                searchTerm?.toLowerCase() ?? ""
-              )
-            )
+            .filter((move) => {
+              const text = [
+                move.name.toLowerCase,
+                move.categoryName,
+                move.categoryId,
+              ].join(" ");
+
+              return text.includes(searchTerm?.toLowerCase() ?? "");
+            })
             .map((move) => (
               <Marker
                 key={move.id}
@@ -51,11 +55,12 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
 export default Auth.withUser(MovesPage);
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { data } = await api.get<Move[]>("/moves");
+  const { data, status } = await api.get<Move[]>("/moves");
 
   return {
     props: {
       moves: data,
+      status,
     },
   };
 };

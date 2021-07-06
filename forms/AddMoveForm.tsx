@@ -57,31 +57,38 @@ const AddMoveForm = () => {
             <Flex direction="column" style={{ gap: "1rem" }}>
               <FormField name="name" label="Titel" />
               <Flex direction="column">
-                <FormLabel fontSize="xs" mb="1" color="white">
+                <FormLabel fontSize="xs" mb="2" color="white">
                   Location
                 </FormLabel>
-                <Map
-                  onClick={(currentPos) => {
-                    const { latitude, longitude } = currentPos;
-                    setFieldValue("latitude", latitude);
-                    setFieldValue("longitude", longitude);
-                  }}
-                  containerElement={<div style={{ height: `50vh` }} />}
-                  mapElement={<div style={{ height: `100%` }} />}
+                <Flex
+                  direction="column"
+                  borderRadius="lg"
+                  overflow="hidden"
+                  height="50vh"
                 >
-                  {values.latitude && values.longitude && (
-                    <Marker
-                      position={{
-                        lat: values.latitude,
-                        lng: values.longitude,
-                      }}
-                    />
-                  )}
-                </Map>
+                  <Map
+                    onClick={(currentPos) => {
+                      const { lat, lng } = currentPos;
+                      setFieldValue("latitude", lat);
+                      setFieldValue("longitude", lng);
+                    }}
+                    containerElement={<div style={{ height: `100%` }} />}
+                    mapElement={<div style={{ height: `100%` }} />}
+                  >
+                    {values.latitude && values.longitude && (
+                      <Marker
+                        position={{
+                          lat: values.latitude,
+                          lng: values.longitude,
+                        }}
+                      />
+                    )}
+                  </Map>
+                </Flex>
               </Flex>
               <FormField name="description" label="Beschreibung" multiLine />
-              <Flex justifyContent="space-between">
-                <FormLabel fontSize="xs" mb="1" color="white">
+              <Flex direction="column">
+                <FormLabel fontSize="xs" mb="2" color="white">
                   Skilllevel
                 </FormLabel>
                 <SkillLevel
