@@ -28,8 +28,9 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
     if (!user) {
       router.push("/login");
     }
+
     await api
-      .post("/moveUsers", { data: { userId: user?.id, moveId: move.id } })
+      .post("/moveUsers", { userId: user?.id, moveId: move.id })
       .then(() => setJoined(true));
   };
 
