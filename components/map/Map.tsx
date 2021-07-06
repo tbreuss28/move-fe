@@ -31,10 +31,10 @@ const DEFAULT_POSITION = { lat: 47.2186011, lng: 9.60297 };
 const CIRCLE_COLOR = "0, 0, 0";
 
 const CIRCLES: PositionRadius[] = [
-  { radius: 1000, color: `rgba(${CIRCLE_COLOR}, 0.3` },
-  { radius: 3000, color: `rgba(${CIRCLE_COLOR}, 0.3` },
-  { radius: 5000, color: `rgba(${CIRCLE_COLOR}, 0.3` },
-  { radius: 10000, color: `rgba(${CIRCLE_COLOR}, 0.3` },
+  { radius: 1000, color: `rgba(${CIRCLE_COLOR}, 0.5` },
+  { radius: 3000, color: `rgba(${CIRCLE_COLOR}, 0.5` },
+  { radius: 5000, color: `rgba(${CIRCLE_COLOR}, 0.5` },
+  { radius: 10000, color: `rgba(${CIRCLE_COLOR}, 0.5` },
 ];
 
 const Map = withGoogleMap(
