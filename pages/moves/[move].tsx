@@ -46,17 +46,14 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
     return date ? format(parseISO(date), "dd.MM.yyyy, hh:mm") : "Kein Datum";
   };
 
-  const isCurrentUserInMove = () =>
-    setJoined(!!movers.find((mover) => mover.userId === user?.id));
-
   useEffect(() => {
     if (!user) router.push("/login");
     if (!move) router.push("/movers");
   });
 
   useEffect(() => {
-    isCurrentUserInMove();
-  });
+    setJoined(!!movers.find((mover) => mover.userId === user?.id));
+  }, []);
 
   return (
     <>
