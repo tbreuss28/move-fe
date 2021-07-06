@@ -13,6 +13,7 @@ class MyDocument extends Document {
             async
             src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
           />
+          <link rel="stylesheet" href="https://use.typekit.net/bom4zgc.css" />
         </Head>
         <body>
           <ColorModeScript />

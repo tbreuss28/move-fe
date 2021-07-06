@@ -7,7 +7,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       templateColumns="1fr"
       templateRows={"5rem 1fr 5rem"}
       templateAreas={`'header' 'main' 'footer'`}
-      bgGradient="linear(to-br, primary, secondary)"
+      bgGradient="linear(to-t, primary.400, secondary.200)"
       height="100vh"
       overflow="hidden"
     >

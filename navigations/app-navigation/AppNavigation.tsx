@@ -12,7 +12,7 @@ const AppNavigation = () => {
         h={12}
         w={12}
         aria-label="New Move"
-        background="brand"
+        colorScheme="brand"
       >
         <AddIcon color="white" h={5} w={6} />
       </IconButton>

@@ -1,4 +1,4 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, Text } from "@chakra-ui/react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
 import { useContext } from "react";
@@ -51,7 +51,11 @@ const LoginForm = () => {
           <Flex direction="column" style={{ gap: "1rem" }}>
             <FormField name="userName" label="Benutzername" />
             <FormField name="password" label="Passwort" type="password" />
-            {errors?.submit && <div>{errors.submit}</div>}
+            {errors?.submit && (
+              <Text fontSize="xs" color="white">
+                {errors.submit}
+              </Text>
+            )}
           </Flex>
         </Form>
       )}

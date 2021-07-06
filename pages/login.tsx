@@ -14,9 +14,8 @@ const LoginPage = () => {
       <Footer>
         <Button
           type="submit"
-          colorScheme="whiteAlpha"
+          colorScheme="brand"
           isFullWidth
-          background="brand"
           color="white"
           gridArea="footer"
           form="login-form"

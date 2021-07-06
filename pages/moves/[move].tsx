@@ -77,9 +77,8 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
         ) : (
           <Button
             onClick={handleJoin}
-            colorScheme="whiteAlpha"
+            colorScheme="brand"
             isFullWidth
-            background="brand"
             color="white"
           >
             Teilnehmen

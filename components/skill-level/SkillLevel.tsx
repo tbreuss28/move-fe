@@ -15,9 +15,10 @@ const SkillLevel = ({ maxLevel, value = 0, onChange }: SkillLevelProps) => {
         return (
           <Box
             key={level}
-            bg={(level <= value && "light") || undefined}
+            colorScheme="white"
+            bg={(level > value && "transparent") || undefined}
             border="2px solid"
-            borderColor="light"
+            borderColor="white"
             borderRadius="50%"
             w={5}
             h={5}
