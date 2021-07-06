@@ -47,7 +47,7 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
   };
 
   const isCurrentUserInMove = () =>
-    !!movers.find((mover) => mover.userId === user?.id);
+    setJoined(!!movers.find((mover) => mover.userId === user?.id));
 
   useEffect(() => {
     if (!user) router.push("/login");
@@ -55,8 +55,8 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
   });
 
   useEffect(() => {
-    setJoined(isCurrentUserInMove());
-  }, [movers, user, isCurrentUserInMove]);
+    isCurrentUserInMove();
+  });
 
   return (
     <>
