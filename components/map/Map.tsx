@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import GoogleMapReact from "google-map-react";
 import type { GeoLocation } from "./types";
 export { default as MoveMarker, MovePin } from "./components/MoveMarker";
+import MapStyles from "./styles";
 interface MoveMapProps {
   defaultCenter?: GeoLocation;
   defaultZoom?: number;
@@ -28,6 +29,12 @@ const MoveMap = ({
       onClick={(mapData) =>
         onClick && onClick({ lat: mapData.lat, lng: mapData.lng })
       }
+      options={{
+        disableDefaultUI: true,
+        styles: MapStyles,
+        streetViewControl: true,
+        mapTypeId: "terrain",
+      }}
     >
       {children}
     </GoogleMapReact>
