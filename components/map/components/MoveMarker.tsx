@@ -2,7 +2,6 @@ import { Flex, Text } from "@chakra-ui/react";
 import { TriangleDownIcon } from "@chakra-ui/icons";
 import { Logo } from "@components";
 import { SkillLevel } from "@components";
-import { move } from "formik";
 
 interface MoveMarkerProps {
   lat?: number;

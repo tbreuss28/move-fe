@@ -1,29 +1,30 @@
-/*  import { ReactNode, useEffect, useRef, useState } from "react";
+/\*
+import { ReactNode, useEffect, useRef, useState } from "react";
 import {
-  GoogleMap,
-  Marker as LibMarker,
-  MarkerProps as LibMarkerProps,
-  Circle,
-  withGoogleMap,
-  WithGoogleMapProps,
+GoogleMap,
+Marker as LibMarker,
+MarkerProps as LibMarkerProps,
+Circle,
+withGoogleMap,
+WithGoogleMapProps,
 } from "react-google-maps";
 import { useGeolocation } from "react-use";
 import MapStyles from "./styles";
 
 type GeoLocation = {
-  lat: number;
-  lng: number;
+lat: number;
+lng: number;
 };
 
 type PositionRadius = {
-  radius: number;
-  color: string;
+radius: number;
+color: string;
 };
 
 interface MapProps {
-  children: ReactNode;
-  onClick?: (currentPosition: GeoLocation) => void;
-  activePosition?: GeoLocation;
+children: ReactNode;
+onClick?: (currentPosition: GeoLocation) => void;
+activePosition?: GeoLocation;
 }
 
 const DEFAULT_POSITION = { lat: 47.2186011, lng: 9.60297 };
@@ -31,17 +32,17 @@ const DEFAULT_POSITION = { lat: 47.2186011, lng: 9.60297 };
 const CIRCLE_COLOR = "0, 0, 0";
 
 const CIRCLES: PositionRadius[] = [
-  { radius: 1000, color: `rgba(${CIRCLE_COLOR}, 0.5)` },
-  { radius: 3000, color: `rgba(${CIRCLE_COLOR}, 0.5)` },
-  { radius: 5000, color: `rgba(${CIRCLE_COLOR}, 0.5)` },
-  { radius: 10000, color: `rgba(${CIRCLE_COLOR}, 0.5)` },
+{ radius: 1000, color: `rgba(${CIRCLE_COLOR}, 0.5)` },
+{ radius: 3000, color: `rgba(${CIRCLE_COLOR}, 0.5)` },
+{ radius: 5000, color: `rgba(${CIRCLE_COLOR}, 0.5)` },
+{ radius: 10000, color: `rgba(${CIRCLE_COLOR}, 0.5)` },
 ];
 
 const Map = withGoogleMap(
-  ({ children, onClick, activePosition }: MapProps & WithGoogleMapProps) => {
-    const map = useRef<GoogleMap>(null);
-    const [userPosition, setUserPosition] =
-      useState<GeoLocation>(DEFAULT_POSITION);
+({ children, onClick, activePosition }: MapProps & WithGoogleMapProps) => {
+const map = useRef<GoogleMap>(null);
+const [userPosition, setUserPosition] =
+useState<GeoLocation>(DEFAULT_POSITION);
 
     const [activeMarkerPosition, setActiveMarkerPosition] = useState<
       GeoLocation | undefined
@@ -108,17 +109,18 @@ const Map = withGoogleMap(
         {children}
       </GoogleMap>
     );
-  }
+
+}
 );
 
 interface MarkerProps extends LibMarkerProps {
-  title?: string;
-  skilllevel?: number;
+title?: string;
+skilllevel?: number;
 }
 
 export const Marker = (props: MarkerProps) => {
-  return <LibMarker {...props}>Test</LibMarker>;
+return <LibMarker {...props}>Test</LibMarker>;
 };
 
 export default Map;
- */
+\*/
