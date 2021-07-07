@@ -3,10 +3,16 @@ import { Box, Flex } from "@chakra-ui/react";
 interface SkillLevelProps {
   maxLevel: number;
   value?: number;
+  size?: number;
   onChange?: (value: number) => void;
 }
 
-const SkillLevel = ({ maxLevel, value = 0, onChange }: SkillLevelProps) => {
+const SkillLevel = ({
+  maxLevel,
+  size = 5,
+  value = 0,
+  onChange,
+}: SkillLevelProps) => {
   return (
     <Flex>
       {Array.from({ length: maxLevel }, (_, idx) => {
@@ -20,8 +26,8 @@ const SkillLevel = ({ maxLevel, value = 0, onChange }: SkillLevelProps) => {
             border="2px solid"
             borderColor="white"
             borderRadius="50%"
-            w={5}
-            h={5}
+            w={size}
+            h={size}
             mr={level === maxLevel ? 0 : 2}
             onClick={() => onChange && onChange(level)}
           />

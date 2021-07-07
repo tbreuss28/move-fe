@@ -1,12 +1,12 @@
-import { Flex, IconButton } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
+import { Flex } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 interface FooterProps {
   children?: ReactNode;
+  background?: string;
 }
 
-const Footer = ({ children }: FooterProps) => {
+const Footer = ({ children, background = "primary" }: FooterProps) => {
   return (
     <Flex
       as="footer"
@@ -20,6 +20,7 @@ const Footer = ({ children }: FooterProps) => {
       zIndex={1}
       h={32}
       width="100%"
+      background={background}
     >
       {children}
     </Flex>

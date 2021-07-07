@@ -54,7 +54,6 @@ const Header = ({ icon, color = "white" }: HeaderProps) => {
                 onChange={(e) => setSearchTerm(e.currentTarget.value)}
                 placeholder="Suche..."
                 variant="outlined"
-                colorScheme="secondary"
                 mr={4}
               />
             )}

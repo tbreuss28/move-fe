@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { Flex, FormLabel } from "@chakra-ui/react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
-import { Marker } from "react-google-maps";
-import { Map, SkillLevel } from "@components";
+import { Map, MovePin, SkillLevel } from "@components";
 import { api } from "@libs";
 import { Auth } from "@providers";
 
@@ -24,7 +23,7 @@ const DEFAULT_VALUES: AddMoveFormValues = {
   description: "",
   media: undefined,
   category: [""],
-  skilllevel: 0,
+  skilllevel: 1,
 };
 
 const AddMoveForm = () => {
@@ -42,7 +41,10 @@ const AddMoveForm = () => {
       longitude: values.longitude,
       skillId: values.skilllevel,
       creatorId: user?.id,
+      startTime: new Date(),
+      endTime: new Date(),
     };
+
     api
       .post("/moves", payload)
       .then(() => router.push("/moves"))
@@ -55,7 +57,6 @@ const AddMoveForm = () => {
         return (
           <Form id="add-move-form">
             <Flex direction="column" style={{ gap: "1rem" }}>
-              <FormField name="name" label="Titel" />
               <Flex direction="column">
                 <FormLabel fontSize="xs" mb="2" color="white">
                   Location
@@ -72,21 +73,18 @@ const AddMoveForm = () => {
                       setFieldValue("latitude", lat);
                       setFieldValue("longitude", lng);
                     }}
-                    containerElement={<div style={{ height: `100%` }} />}
-                    mapElement={<div style={{ height: `100%` }} />}
                   >
                     {values.latitude && values.longitude && (
-                      <Marker
-                        position={{
-                          lat: values.latitude,
-                          lng: values.longitude,
-                        }}
-                      />
+                      <MovePin lat={values.latitude} lng={values.longitude} />
                     )}
                   </Map>
                 </Flex>
               </Flex>
+
+              <FormField name="name" label="Titel" />
+
               <FormField name="description" label="Beschreibung" multiLine />
+
               <Flex direction="column">
                 <FormLabel fontSize="xs" mb="2" color="white">
                   Skilllevel

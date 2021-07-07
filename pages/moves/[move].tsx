@@ -17,7 +17,7 @@ import { Main } from "@layouts";
 import { api } from "@libs";
 import { Auth } from "@providers";
 import { Move, MoveUser } from "@types";
-import { Map, Marker, Section } from "@components";
+import { Map, MovePin, Section } from "@components";
 import router from "next/router";
 
 const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
@@ -38,6 +38,7 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
     if (!user) {
       throw new Error("Missing user context!");
     }
+
     await api
       .delete("/moveUsers", { data: { userId: user?.id, moveId: move.id } })
       .then(() => setJoined(false));
@@ -54,7 +55,7 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
 
   useEffect(() => {
     setJoined(!!movers.find((mover) => mover.userId === user?.id));
-  }, []);
+  }, [movers, user?.id]);
 
   return (
     <>
@@ -94,12 +95,8 @@ const MovePage = ({ move, movers }: { move: Move; movers: MoveUser[] }) => {
             overflow="hidden"
             height="30vh"
           >
-            <Map
-              activePosition={{ lat: move.latitude, lng: move.longitude }}
-              containerElement={<div style={{ height: `100%` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-            >
-              <Marker position={{ lat: move.latitude, lng: move.longitude }} />
+            <Map activePosition={{ lat: move.latitude, lng: move.longitude }}>
+              <MovePin lat={move.latitude} lng={move.longitude} />
             </Map>
           </Flex>
 

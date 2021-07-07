@@ -1,10 +1,12 @@
 interface LogoProps {
-  size?: "small" | "medium" | "large" | "xlarge";
+  size?: "small" | "medium" | "large" | "xlarge" | "xsmall";
 }
 
 const Logo = ({ size }: LogoProps) => {
   const svgSize = () => {
     switch (size) {
+      case "xsmall":
+        return 12;
       case "small":
         return 16;
       case "large":

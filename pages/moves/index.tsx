@@ -2,8 +2,7 @@ import { useContext, useEffect } from "react";
 import { GetServerSideProps } from "next";
 import Router from "next/router";
 import { Box } from "@chakra-ui/react";
-import { Marker } from "react-google-maps";
-import { Header, Footer, Map } from "@components";
+import { Header, Footer, Map, MoveMarker } from "@components";
 import { api } from "@libs";
 import { AppNavigation } from "@navigations";
 import { Auth, Search } from "@providers";
@@ -22,10 +21,7 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
       <Header color="primary" icon="search" />
       {/* Special Grid Area for Map */}
       <Box gridArea={"header / header / footer / footer"}>
-        <Map
-          containerElement={<div style={{ height: `100%` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        >
+        <Map>
           {moves
             .filter((move) => {
               const text = [
@@ -37,15 +33,18 @@ const MovesPage = ({ moves }: { moves: Move[] }) => {
               return text.includes(searchTerm?.toLowerCase() ?? "");
             })
             .map((move) => (
-              <Marker
+              <MoveMarker
                 key={move.id}
-                position={{ lat: move.latitude, lng: move.longitude }}
+                title={move.name}
+                lat={move.latitude}
+                lng={move.longitude}
                 onClick={() => Router.push(`/moves/${move.id}`)}
+                skilllevel={move.skillId}
               />
             ))}
         </Map>
       </Box>
-      <Footer>
+      <Footer background="transparent">
         <AppNavigation />
       </Footer>
     </>
